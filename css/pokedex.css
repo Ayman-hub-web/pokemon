@@ -1,0 +1,267 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    min-width: 100%;
+    margin: 0;
+}
+
+.bg {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: fixed;
+}
+
+.round {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.container .searching form input {
+    width: 300px;
+}
+
+.searching {
+    margin-bottom: 16px;
+}
+
+.logo {
+    width: 300px;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.pokeEle {
+    width: 200px;
+    height: 350px;
+    background-color: yellow;
+    margin-left: 16px;
+    margin-bottom: 32px;
+}
+
+.onePoke {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 100px;
+}
+
+.card {
+    background-color: rgb(186, 219, 208);
+    text-align: center;
+}
+
+.card .card-img {
+    height: 150px;
+    padding-top: 16px;
+    object-fit: cover;
+}
+
+.onePoke .links_div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+li {
+    list-style: none;
+}
+
+.focus {
+    width: 100%;
+    padding: 5px;
+    background-color: azure;
+    font-size: 20px;
+    font-weight: bold;
+    color: #777777;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    padding: 20px;
+    background-color: rgb(188, 188, 235);
+}
+
+.move {
+    width: 50%;
+    height: 100%;
+}
+
+.bg1 {
+    background-color: rgb(148, 223, 205);
+}
+
+.bg2 {
+    background-color: rgb(107, 160, 128);
+}
+
+.singleMove {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.progress {
+    width: 300px;
+}
+
+.btn-more {
+    width: 300px;
+    font-weight: bold;
+}
+
+
+/**/
+
+.stories {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    margin-bottom: 8px;
+}
+
+.story_element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.stories_img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 2px solid coral;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stories_img img {
+    width: 90%;
+    height: 90%;
+    border-radius: 100%;
+    border: 2px solid rgb(63, 55, 55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+}
+
+.menu-img {
+    width: 100%;
+    margin-bottom: 32px;
+    display: none;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+@media(max-width:1000px) {
+    ul {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 12px;
+    }
+    ul li {
+        margin-bottom: 22px;
+        background-color: rgb(188, 188, 235);
+        width: 60px;
+    }
+    ul li a {
+        padding: 10px;
+        font-size: 20px;
+        width: 50px;
+    }
+    .menu-img {
+        display: flex;
+    }
+    .onePoke {
+        width: 90%;
+    }
+    .round {
+        width: calc(100% -32px);
+        justify-content: center;
+        align-items: center;
+        padding-right: 32px;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        padding-right: 10%;
+    }
+    .move {
+        width: 100%;
+    }
+    .singleMove {
+        width: calc(90% - 10px);
+        justify-content: center;
+    }
+    .moreSingleMove {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .space-between {
+        justify-content: space-between;
+    }
+    .singleMove {
+        width: calc(100% - 20px);
+    }
+}
