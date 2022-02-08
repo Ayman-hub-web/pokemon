@@ -4,6 +4,7 @@ let poki;
 let loadPokemons = [];
 let sprites_images = [];
 let types = [];
+let searchResult = [];
 
 async function loadPokemon() {
     let url = `https://pokeapi.co/api/v2/pokemon/`;
@@ -42,34 +43,64 @@ function getInfo() {
     }
 }
 
+function showResults() {
+    document.getElementById('poke').classList.add('d-none');
+    document.getElementById('moves').classList.add('d-none');
+    document.getElementById('poke-search').classList.remove('d-none');
+    let content = document.getElementById('poke-search');
+    content.innerHTML = '';
+    //console.log('Results in searchResult', searchResult);
+    for (let i = 0; i < searchResult.length; i++) {
+        content.innerHTML += `<div class="card pokeEle bg-card" style="width: 15rem;background-color:rgb(186, 219, 208);text-align:center;" id="card-id${i}">
+        <img src="${searchResult[i].sprites.front_default}" class="card-img-top" alt="..." onclick="alternativSingle(${i})">
+        <div class="card-body" id="card-body">
+          <h5 class="card-title">${searchResult[i].name}</h5><h5 class="card-title" id="card-title${i}" onclick="getColor()">${searchResult[i].types[0].type.name}</h5></div></div>`;
+        getPokemonColor(i);
+
+    }
+    searchResult = [];
+
+}
+
 function searchPokemon() {
-    sprites_images = [];
+    console.log('search starting', searchResult);
+    //sprites_images = [];
+    let position = 0;
     let searchText = document.getElementById('search').value;
-    for (let i = 0; i < currentPokemon.results.length; i++) {
-        if (currentPokemon.results[i].name == searchText) {
-            savePokeImages(i);
-            document.getElementById('poke').classList.add('d-none');
-            document.getElementById('onePoke').classList.remove('d-none');
-            document.getElementById('onePoke').innerHTML = '';
-            document.getElementById('moves').innerHTML = '';
-            document.getElementById('onePoke').innerHTML = '<div class="menu-img" id="menu-img"><img src="img/menu.png" onclick="toggle()"></div>';
-            document.getElementById('onePoke').innerHTML += `<div class="links_div"><ul class"links" id="links">
-            <li><a href="#" onclick="showTypes(${i})">Types</a><li>
-            <li><a href="#" onclick="showStats(${i})">Stats</a><li>
-            <li onclick="showMoves(${i})"><a href="#">Movies</a><li>
-            <li><a href="#" onclick="gameIndices(${i})">Indices</a><li>
-            <li><a href="#">Sprites</a><li>
-          </ul></div>`;
-            document.getElementById('onePoke').innerHTML += '';
-            showElementImages();
-            document.getElementById('onePoke').innerHTML += `<div class="card pokeEle" style="width: 16rem;background-color:rgb(186, 219, 208);text-align:center;">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${i+1}.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">${currentPokemon.results[i].name}</h5>
-              </div>
-              </div>`;
+    searchText = searchText.toLowerCase();
+    console.log('poke in search', loadPokemons.length);
+    for (let i = 0; i < loadPokemons.length; i++) {
+        // console.log('poke in search', loadPokemons[i].name);
+        position = loadPokemons[i].name.toLowerCase().startsWith(searchText);
+        if (position) {
+            searchResult.push(loadPokemons[i]);
+            // if (currentPokemon.results[i].name == searchText) {
+            //     savePokeImages(i);
+            //     document.getElementById('poke').classList.add('d-none');
+            //     document.getElementById('onePoke').classList.remove('d-none');
+            //     document.getElementById('onePoke').innerHTML = '';
+            //     document.getElementById('moves').innerHTML = '';
+            //     document.getElementById('onePoke').innerHTML = '<div class="menu-img" id="menu-img"><img src="img/menu.png" onclick="toggle()"></div>';
+            //     document.getElementById('onePoke').innerHTML += `<div class="links_div"><ul class"links" id="links">
+            //     <li><a href="#" onclick="showTypes(${i})">Types</a><li>
+            //     <li><a href="#" onclick="showStats(${i})">Stats</a><li>
+            //     <li onclick="showMoves(${i})"><a href="#">Movies</a><li>
+            //     <li><a href="#" onclick="gameIndices(${i})">Indices</a><li>
+            //     <li><a href="#">Sprites</a><li>
+            //   </ul></div>`;
+            //     document.getElementById('onePoke').innerHTML += '';
+            //     showElementImages();
+            //     document.getElementById('onePoke').innerHTML += `<div class="card pokeEle" style="width: 16rem;background-color:rgb(186, 219, 208);text-align:center;">
+            //     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${i+1}.png" class="card-img-top" alt="...">
+            //     <div class="card-body">
+            //       <h5 class="card-title">${currentPokemon.results[i].name}</h5>
+            //       </div>
+            //       </div>`;
+            // }
         }
     }
+    showResults();
+
 
     document.getElementById('search').value = '';
 }
@@ -100,6 +131,7 @@ async function viewSingle(name) {
 function alternativSingle(i) {
     sprites_images = [];
     savePokeImages(i);
+    document.getElementById('poke-search').classList.add('d-none');
     document.getElementById('poke').classList.add('d-none');
     document.getElementById('onePoke').classList.remove('d-none');
     document.getElementById('onePoke').innerHTML = '<div class="menu-img" id="menu-img"><img src="img/menu.png" onclick="toggle()"></div>';
@@ -138,10 +170,10 @@ function showMoves(i) {
 }
 
 function showTypes(i) {
-    //document.getElementById('poke').classList.add('d-none');
+    document.getElementById('poke-search').classList.add('d-none');
     document.getElementById('onePoke').classList.add('d-none');
-    document.getElementById('moves').innerHTML = '';
     document.getElementById('moves').classList.remove('d-none');
+    document.getElementById('moves').innerHTML = '';
     document.getElementById('moves').innerHTML = `<div white_div>
     <ul id="moves"><li><b>Weight</b></li>`;
     document.getElementById('moves').innerHTML += `<div class="singleMove"><li><div class="progress">
@@ -263,4 +295,8 @@ function getPokemonColor(i) {
         y.style.backgroundColor = 'yellow';
         y.style.color = 'white';
     }
+}
+
+function backToHome() {
+    location.reload();
 }

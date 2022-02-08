@@ -204,6 +204,21 @@ ul li a {
     justify-content: flex-end;
 }
 
+.back-to-home {
+    width: 100%;
+    margin: 32px;
+    margin-bottom: 32px;
+}
+
+.back-to-home img {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 100px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
 @media(max-width:1000px) {
     ul {
         width: 100%;

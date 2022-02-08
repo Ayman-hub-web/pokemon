@@ -16,18 +16,23 @@
     <div class="bg"><img src="img/grass.png"></div>
     <div class="container" id="container">
         <div class="searching mb-5 top-5">
-            <form onclick="searchPokemon()">
-                <div class="mb-3">
-                    <label for="SerachText" class="form-label"><img src="img/pokemon_logo.gif" class="logo"></label>
-                    <input type="text" id="search" class="form-control" required>
-                    <p class="validate_input" id="validate"></p>
-                </div>
-                <button type="submit" class="btn btn-primary btn-more">Find Pokemon</button>
-            </form>
+            <!-- <form> -->
+            <div class="mb-3">
+                <label for="SerachText" class="form-label"><img src="img/pokemon_logo.gif" class="logo"></label>
+                <input type="search" id="search" class="form-control" onsearch="searchPokemon()" required>
+                <p class="validate_input" id="validate"></p>
+            </div>
+            <!-- <button type="button" class="btn btn-primary btn-more" onsearch="searchPokemon()">Find Pokemon</button> -->
+            <!-- </form> -->
+        </div>
+        <div class="back-to-home">
+            <img src="img/home.jfif" onclick="backToHome()">
         </div>
         <div class="onePoke d-none" id="onePoke"></div>
         <div class="move d-none" id="moves"></div>
         <div class="round" id="poke">
+        </div>
+        <div class="round d-none" id="poke-search">
         </div>
     </div>
 </body>
